@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@drawable/homepage"
+    tools:context=".Code.home.HomeFragment">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="10dp"
+        android:hint="Tìm kiếm..."
+        android:id="@+id/sv_serch"
+        android:background="@drawable/botron_btn_acc"
+        android:queryHint="Tim kiem" />
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:background="@drawable/slide1"
+        android:text="TextView" />
+
+    <GridView
+        android:id="@+id/gv_intro"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:horizontalSpacing="5dp"
+        android:numColumns="4"
+        android:verticalSpacing="0dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcl_food"
+        android:layout_width="match_parent"
+        android:layout_height="408dp"
+        android:layout_margin="25dp"
+        android:scrollbars="vertical" />
+
+
+</LinearLayout>

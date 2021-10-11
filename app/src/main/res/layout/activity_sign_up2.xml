@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    tools:context=".Activity.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/login1"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="153dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/logo3" />
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:drawableStart="@drawable/me2"
+            android:background="@drawable/botron_btn_acc"
+            android:hint="Nhập tên tài khoản"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/edt_user_sup"
+            android:drawableLeft="@drawable/me2" />
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:pointerIcon="cell"
+            android:drawableStart="@drawable/pass"
+            android:hint="Nhập lại mật khẩu "
+            android:background="@drawable/botron_btn_acc"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:id="@+id/edt_pass_sup"
+            android:drawableLeft="@drawable/pass" />
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:pointerIcon="cell"
+            android:hint="Nhập lại mật khẩu "
+            android:background="@drawable/botron_btn_acc"
+            android:inputType="textPassword"
+            android:gravity="center"
+            android:drawableStart="@drawable/ic_baseline_check_24"
+            android:layout_gravity="center"
+            android:id="@+id/edt_pass2_sup"
+            android:drawableLeft="@drawable/ic_baseline_check_24" />
+
+        <Button
+
+            android:id="@+id/btn_signup"
+            android:layout_width="195dp"
+            android:layout_height="42dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/buttonsred"
+            android:text="ĐĂNG KÍ "
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
