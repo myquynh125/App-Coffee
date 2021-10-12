@@ -3,6 +3,7 @@
     <item
         android:title="Sửa"
         android:id="@+id/menu_sua"
+
         />
     <item
         android:title="Xóa"
