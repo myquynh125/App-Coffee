@@ -78,6 +78,7 @@ public class AddFoodFragment extends Fragment {
         list.add("cà phê");
         list.add("trà");
         list.add("sinh tố");
+        list.add("tráng miện");
         ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, list);
         Spinner_food.setAdapter(adapter);
         EditText_price.setInputType(InputType.TYPE_CLASS_NUMBER |
