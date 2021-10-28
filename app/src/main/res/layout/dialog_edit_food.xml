@@ -17,6 +17,15 @@
         android:gravity="center"
         android:background="@drawable/botron_edt"
         />
+    <Spinner
+        android:layout_marginTop="17dp"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:id="@+id/txt_food"
+        android:layout_margin="10dp"
+        android:background="@drawable/botron_btn_acc"/>
     <EditText
         android:layout_gravity="center"
         android:layout_width="280dp"
@@ -40,13 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal">
-        <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="35dp"
-            android:layout_margin="5dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_baseline_camera_alt_24"
-            android:id="@+id/imv_camera_dal"/>
+
         <ImageButton
             android:layout_width="40dp"
             android:layout_height="35dp"

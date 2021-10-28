@@ -36,10 +36,48 @@
         <entry key="..\:/DoAnMon1/app/src/main/res/layout/item_oder.xml" value="0.1" />
         <entry key="..\:/DoAnMon1/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
         <entry key="..\:/DoAnMon1/app/src/main/res/menu/menu_food.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/botron_btn.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/botron_btn_acc.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/botron_edt.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/botron_search.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/hien_pass.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.1712962962962963" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.1712962962962963" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/ic_baseline_folder_24.xml" value="0.1712962962962963" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.1712962962962963" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/ic_launcher_background.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/me1.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/me2.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/drawable/pass.xml" value="0.115625" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/activity_admin.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/activity_home_2.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/activity_list_acc.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/activity_maps.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/activity_reset_account.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/activity_sign_up2.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/bottom_sheet.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/dialog_edit_food.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/dialog_view_order.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/food_item.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/fragment_addfood.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/fragment_me.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/fragment_order.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/images_intro.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/item_food_admin.xml" value="0.1539855072463768" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/layout/item_oder.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/menu/menu.xml" value="0.1796875" />
+        <entry key="..\:/Users/Public/DoAnMon1/app/src/main/res/menu/menu_food.xml" value="0.1" />
+        <entry key="..\:/Users/Win-10/AndroidStudioProjects/New folder/caches/transforms-2/files-2.1/cc63e10563e27ad7de95881cf0a61cfe/appcompat-1.2.0/res/layout/support_simple_spinner_dropdown_item.xml" value="0.1" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

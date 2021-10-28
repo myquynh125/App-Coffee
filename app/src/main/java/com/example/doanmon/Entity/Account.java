@@ -14,11 +14,13 @@ public class Account {
     String pass;
 
 
+
     public Account(String user, String pass) {
         this.user = user;
         this.pass = pass;
 
     }
+
 
     public int getId() {
         return id;

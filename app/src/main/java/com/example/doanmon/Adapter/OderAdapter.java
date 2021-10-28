@@ -87,6 +87,17 @@ public class OderAdapter extends RecyclerView.Adapter<OderAdapter.ViewHolder> {
                     }
                 }
             });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(onclickItem != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            onclickItem.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 

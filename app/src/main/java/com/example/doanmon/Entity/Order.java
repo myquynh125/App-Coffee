@@ -17,7 +17,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(String name, Double price, byte[] image) {
+    public Order(String name, Double price ,byte[] image) {
         this.name = name;
         this.price = price;
         this.image = image;
@@ -39,6 +39,8 @@ public class Order {
         this.name = name;
     }
 
+
+
     public Double getPrice() {
         return price;
     }
@@ -47,6 +49,8 @@ public class Order {
         this.price = price;
     }
 
+
+
     public byte[] getImage() {
         return image;
     }
@@ -54,4 +58,12 @@ public class Order {
     public void setImage(byte[] image) {
         this.image = image;
     }
+
+
+
+
+
+
+
+
 }

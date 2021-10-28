@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +26,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     private OnItemClickListener Listener;
     public interface OnItemClickListener{
         void onItemClick(int Position);
-        void deleteItem(int Position);
+        void insertItem(int Position);
+        void deletefood(int Position);
+
     }
     public void setOnItemClickListener(OnItemClickListener clickListener){
         Listener=clickListener;
@@ -48,23 +51,28 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Foody foody = foodyArrayList.get(position);
+        if (foody==null){
+            return;
+        }
         holder.ImageViewFood.setImageBitmap(DataConvert.ConvertBitmap(foody.getImage()));
         holder.TextViewName.setText(foody.getName());
         holder.TextViewPrice.setText(foody.getPrice()+" VNĐ");
         holder.TextViewCategory.setText(foody.getCategory());
         holder.TextViewDetail.setText(foody.getDetail());
+
     }
 
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         View view;
-        ImageView ImageViewFood;
+        ImageView ImageViewFood,ImageViewminus;
         TextView TextViewName;
         TextView TextViewCategory;
         TextView TextViewPrice;
         TextView TextViewDetail;
         ImageView nImageViewAddOrder;
+
         public ViewHolder(@NonNull View itemView , final OnItemClickListener listener) {
             super(itemView);
             view=itemView;
@@ -74,6 +82,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
             TextViewPrice=itemView.findViewById(R.id.tv_price);
             TextViewDetail=itemView.findViewById(R.id.tv_detail);
             nImageViewAddOrder=itemView.findViewById(R.id.imv_add_order);
+            ImageViewminus=itemView.findViewById(R.id.imv_delete);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -92,11 +101,23 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
                     if(listener != null){
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION){
-                            listener.deleteItem(position);
+                            listener.insertItem(position);
                         }
                     }
                 }
             });
+            ImageViewminus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null){
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            listener.deletefood(position);
+                        }
+                    }
+                }
+            });
+
         }
     }
     @Override

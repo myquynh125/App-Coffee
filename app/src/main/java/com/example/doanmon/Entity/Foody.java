@@ -5,8 +5,10 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(tableName = "food_db")
-public class Foody {
+public class Foody implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo(name = "name")
@@ -20,7 +22,7 @@ public class Foody {
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private byte [] image;
 
-    public Foody(int id, String name, String category, Double price, String detail) {
+    public Foody() {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -28,8 +30,7 @@ public class Foody {
         this.detail = detail;
     }
 
-    public Foody() {
-    }
+
 
     @Ignore
     public Foody(String name, String category, Double price, String detail) {

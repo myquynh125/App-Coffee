@@ -29,6 +29,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 
 import com.example.doanmon.Activity.Home_Activity2;
+import com.example.doanmon.Code.Admin.MeFragment;
 import com.example.doanmon.Convert.DataConvert;
 import com.example.doanmon.DAO.AppDatabase;
 import com.example.doanmon.Entity.Foody;
@@ -48,7 +49,6 @@ public class AddFoodFragment extends Fragment {
     private Spinner Spinner_food;
     private Button Button_add;
     private ImageButton imageButton_camera;
-    private ImageButton imageButton_folder;
     private ImageView ImageView_imagesfood;
     Context context;
     private List<String> list;
@@ -75,9 +75,9 @@ public class AddFoodFragment extends Fragment {
         ImageView_imagesfood = root.findViewById(R.id.imv_add_food);
         Spinner_food = root.findViewById(R.id.spn_food);
         list = new ArrayList<>();
-        list.add("coffee");
-        list.add("tea");
-        list.add("smoothie");
+        list.add("cà phê");
+        list.add("trà");
+        list.add("sinh tố");
         ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, list);
         Spinner_food.setAdapter(adapter);
         EditText_price.setInputType(InputType.TYPE_CLASS_NUMBER |
@@ -146,18 +146,7 @@ public class AddFoodFragment extends Fragment {
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == REQUESTCODE_CAMERA && resultCode == Activity.RESULT_OK && data != null) ;
-        {
-            try {
-                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                ImageView_imagesfood.setImageBitmap(bitmap);
-                bitmapImages = bitmap;
 
-            } catch (Exception e) {
-                Log.e("erro", "" + e);
-            }
-
-        }
         if (requestCode == REQUESTCODE_FOLDER && resultCode == Activity.RESULT_OK && data != null) {
             Uri uri = data.getData();
             try {

@@ -58,10 +58,17 @@ public class OrderFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         RecyclerView.setLayoutManager(linearLayoutManager);
         RecyclerView.setAdapter(oderAdapter);
+        RecyclerView.smoothScrollToPosition(RecyclerView.getAdapter().getItemCount());
         final Double finalSum1 = sum;
         oderAdapter.setOnItemClickListener(new OderAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int Position) {
+                final AlertDialog.Builder build = new AlertDialog.Builder(getContext());
+                final OrderDatabase database2= OrderDatabase.getInstance(getContext());
+                ArrayList<Order> orderArrayList = (ArrayList<Order>) database2.daoOrder().ORDERS_LIST();
+                final Order orders = orderArrayList.get(Position);
+                build.setTitle("Chi tiết");
+
 
             }
             @Override

@@ -1,21 +1,28 @@
 package com.example.doanmon.Code.Admin;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.doanmon.Activity.MainActivity;
+import com.example.doanmon.Adapter.FoodAdapter;
 import com.example.doanmon.DAO.AppDatabase;
 import com.example.doanmon.Database.AccountDatabase;
 import com.example.doanmon.Database.BuyDatabase;
@@ -28,16 +35,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MeFragment extends Fragment {
-private Button Button_logout;
-private TextView TextView_name_me;
-private ListView ListView_me;
-TextView TextViewThunhap;
-TextView TextViewSoluong;
-TextView TextViewSoluongdangban;
-TextView TextViewSoluongtaikhoan;
-Button buttondsacc;
+    private Button Button_logout;
+    private TextView TextView_name_me;
+    private ListView ListView_me;
+    TextView TextViewThunhap;
+    TextView TextViewSoluong;
+    TextView TextViewSoluongdangban;
+    TextView TextViewSoluongtaikhoan;
+    private RecyclerView recyclerView;
+    private AppDatabase db;
+    private ArrayList<Foody> foodies;
+    Button buttondsacc;
     private MeViewModel meViewModel;
     private Context context;
+    private FoodAdapter foodAdapter;
     ArrayList <String> arr = new ArrayList<>();
     public View onCreateView(@NonNull LayoutInflater inflater,
     ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +56,7 @@ Button buttondsacc;
         ViewModelProviders.of(this).get(MeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_me, container, false);
         Button_logout=root.findViewById(R.id.btn_logout);
+
         Button_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +86,9 @@ Button buttondsacc;
       }
       TextViewThunhap.setText("Tổng thu nhập : "+tn+" VND");
       TextViewSoluong.setText("Đơn đã bán : "+buyList.size());
+
+
         return root;
+
     }
 }

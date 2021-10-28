@@ -1,6 +1,7 @@
 package com.example.doanmon.Code.home;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.doanmon.Activity.EditFood;
 import com.example.doanmon.Adapter.FoodAdapter;
 import com.example.doanmon.Adapter.ImagesAdapter;
 import com.example.doanmon.DAO.AppDatabase;
@@ -34,6 +36,7 @@ import com.example.doanmon.R;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
+    private static final int MY_REQUEST_CODE = 100;
     private GridView GridViewIntro;
     private RecyclerView RecyclerViewFood;
     private ArrayList<Image> imageArrayList = new ArrayList<>();
@@ -41,6 +44,7 @@ public class HomeFragment extends Fragment {
     private FoodAdapter foodAdapter;
     private HomeViewModel homeViewModel;
     private EditText SearchView;
+
     Context context;
     private AppDatabase db;
     private ArrayList<Foody> foodies;
@@ -51,6 +55,8 @@ public class HomeFragment extends Fragment {
         = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         GridViewIntro = root.findViewById(R.id.gv_intro);
+
+
         RecyclerViewFood = root.findViewById(R.id.rcl_food);
         SearchView = root.findViewById(R.id.sv_serch);
         SearchView.addTextChangedListener(new TextWatcher() {
@@ -62,7 +68,7 @@ public class HomeFragment extends Fragment {
             }
             @Override
             public void afterTextChanged(Editable s) {
-                filter(s.toString());
+                 filter(s.toString());
             }
         });
 
@@ -75,15 +81,26 @@ public class HomeFragment extends Fragment {
 
         foodies = (ArrayList<Foody>) db.daoFood().FOODY_LIST();
         foodAdapter = new FoodAdapter((ArrayList<Foody>) foodies, getContext());
+
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext());
         RecyclerViewFood.setLayoutManager(manager);
         RecyclerViewFood.setAdapter(foodAdapter);
+        RecyclerViewFood.smoothScrollToPosition(RecyclerViewFood.getAdapter().getItemCount());
         foodAdapter.setOnItemClickListener(new FoodAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(final int Position) {
+
+
+
+            }
+
+            @Override
+            public void deletefood(int Position) {
                 Toast.makeText(getContext(), ""+Position, Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
                 builder.setTitle("Bạn muốn ?");
+
                 builder.setPositiveButton("Xóa", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -102,27 +119,17 @@ public class HomeFragment extends Fragment {
                         Toast.makeText(getContext(), "Đã xóa "+foody.getName(), Toast.LENGTH_SHORT).show();
                     }
                 });
-                builder.setNegativeButton("Sửa", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        ArrayList<Foody> foodies1 = (ArrayList<Foody>) db.daoFood().FOODY_LIST();
-                        Foody foody= foodies1.get(Position);
-                        db.daoFood().updateFoody(foody);
-                        try{
-
-                        }
-                        catch (Exception e){
-                            Log.e("ERROR",""+e);
-                        }
-                        Toast.makeText(getContext(),"Đã sửa "+foody.getName(), Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
                     }
                 });
                 builder.show();
-
             }
 
             @Override
-            public void deleteItem(final int Position) {
+            public void insertItem(final int Position) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Mua hàng");
                 builder.setPositiveButton("Mua", new DialogInterface.OnClickListener() {
@@ -149,6 +156,9 @@ public class HomeFragment extends Fragment {
         });
         return root;
     }
+
+
+
 
     private void filter(String Text) {
         ArrayList<Foody> foodyList = new ArrayList<>();
