@@ -1,19 +1,23 @@
 package com.example.doanmon.Code.home;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,7 +27,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.doanmon.Activity.EditFood;
 import com.example.doanmon.Adapter.FoodAdapter;
 import com.example.doanmon.Adapter.ImagesAdapter;
 import com.example.doanmon.DAO.AppDatabase;
@@ -34,6 +37,7 @@ import com.example.doanmon.Model.Image;
 import com.example.doanmon.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     private static final int MY_REQUEST_CODE = 100;
@@ -44,12 +48,11 @@ public class HomeFragment extends Fragment {
     private FoodAdapter foodAdapter;
     private HomeViewModel homeViewModel;
     private EditText SearchView;
-
-    Context context;
+    final Context context=getContext();
     private AppDatabase db;
     private ArrayList<Foody> foodies;
-
-
+    private List<String> list;
+    Bitmap bitmapImages = null;
     public View onCreateView(@NonNull LayoutInflater inflater,
         ViewGroup container, Bundle savedInstanceState) { homeViewModel
         = ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -89,9 +92,53 @@ public class HomeFragment extends Fragment {
         foodAdapter.setOnItemClickListener(new FoodAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(final int Position) {
+                LayoutInflater layoutInflater=LayoutInflater.from(context);
+                View update=layoutInflater.inflate(R.layout.dialog_edit_food,null);
+                AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                builder.setView(update);
+                final EditText txtname=update.findViewById(R.id.edt_namefood_dal);
+                final Spinner spn=update.findViewById(R.id.txt_food);
+                final EditText txtpri=update.findViewById(R.id.edt_price_dal);
+                final EditText txtdeta=update.findViewById(R.id.edt_review_dal);
+                final ImageButton tmgcam=update.findViewById(R.id.imv_folder_dal);
+                final ImageView tmg=update.findViewById(R.id.imv_add_food_dal);
+                list = new ArrayList<>();
+                list.add("cà phê");
+                list.add("trà");
+                list.add("sinh tố");
+                ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, list);
+                spn.setAdapter(adapter);
+                txtpri.setInputType(InputType.TYPE_CLASS_NUMBER |
+                        InputType.TYPE_NUMBER_VARIATION_NORMAL);
+                builder.setTitle("Bạn có muốn update không");
+                builder.setPositiveButton("Sửa", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Foody foody = foodies.get(Position);
+                        String loai = spn.getSelectedItem().toString();
+                        String name = txtname.getText().toString();
+                        String pri = txtpri.getText().toString();
+                        String review = txtdeta.getText().toString();
+                        try {
+                            if (name.isEmpty()) {
+                                txtname.setError("Nhập tên sản phẩm!");
+                                return;
+                            }
+                            if (pri.isEmpty()) {
+                                txtpri.setError("Giá sản phẩm");
+                                return;
+                            }
+                            if (review.isEmpty()) {
+                                txtdeta.setError("Mô tả drink !");
+                                return;
+                            }
+                        } catch (Exception e) {
+                            Log.e("ERRO", "" + e);
+                        }
 
 
-
+                    }
+                });
             }
 
             @Override
