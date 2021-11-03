@@ -1,9 +1,13 @@
 package com.example.doanmon.Code.home;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -21,14 +25,17 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.doanmon.Activity.Home_Activity2;
 import com.example.doanmon.Adapter.FoodAdapter;
 import com.example.doanmon.Adapter.ImagesAdapter;
+import com.example.doanmon.Convert.DataConvert;
 import com.example.doanmon.DAO.AppDatabase;
 import com.example.doanmon.Database.OrderDatabase;
 import com.example.doanmon.Entity.Foody;
@@ -36,11 +43,14 @@ import com.example.doanmon.Entity.Order;
 import com.example.doanmon.Model.Image;
 import com.example.doanmon.R;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
     private static final int MY_REQUEST_CODE = 100;
+    private static final int REQUESTCODE_FOLDER = 999;
     private GridView GridViewIntro;
     private RecyclerView RecyclerViewFood;
     private ArrayList<Image> imageArrayList = new ArrayList<>();
@@ -48,11 +58,13 @@ public class HomeFragment extends Fragment {
     private FoodAdapter foodAdapter;
     private HomeViewModel homeViewModel;
     private EditText SearchView;
-    final Context context=getContext();
+    final Context context=getActivity();
     private AppDatabase db;
     private ArrayList<Foody> foodies;
     private List<String> list;
     Bitmap bitmapImages = null;
+    ImageView tmg;
+    private View Button_folder;
     public View onCreateView(@NonNull LayoutInflater inflater,
         ViewGroup container, Bundle savedInstanceState) { homeViewModel
         = ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -101,7 +113,8 @@ public class HomeFragment extends Fragment {
                 final EditText txtpri=update.findViewById(R.id.edt_price_dal);
                 final EditText txtdeta=update.findViewById(R.id.edt_review_dal);
                 final ImageButton tmgcam=update.findViewById(R.id.imv_folder_dal);
-                final ImageView tmg=update.findViewById(R.id.imv_add_food_dal);
+                tmg=update.findViewById(R.id.imv_add_food_dal);
+                Button_folder=update.findViewById(R.id.btn_folder_dal);
                 list = new ArrayList<>();
                 list.add("cà phê");
                 list.add("trà");
@@ -110,6 +123,14 @@ public class HomeFragment extends Fragment {
                 spn.setAdapter(adapter);
                 txtpri.setInputType(InputType.TYPE_CLASS_NUMBER |
                         InputType.TYPE_NUMBER_VARIATION_NORMAL);
+                Button_folder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_PICK);
+                        intent.setType("image/*");
+                        startActivityForResult(intent, REQUESTCODE_FOLDER);
+                    }
+                });
                 builder.setTitle("Bạn có muốn update không");
                 builder.setPositiveButton("Sửa", new DialogInterface.OnClickListener() {
                     @Override
@@ -119,22 +140,6 @@ public class HomeFragment extends Fragment {
                         String name = txtname.getText().toString();
                         String pri = txtpri.getText().toString();
                         String review = txtdeta.getText().toString();
-                        try {
-                            if (name.isEmpty()) {
-                                txtname.setError("Nhập tên sản phẩm!");
-                                return;
-                            }
-                            if (pri.isEmpty()) {
-                                txtpri.setError("Giá sản phẩm");
-                                return;
-                            }
-                            if (review.isEmpty()) {
-                                txtdeta.setError("Mô tả drink !");
-                                return;
-                            }
-                        } catch (Exception e) {
-                            Log.e("ERRO", "" + e);
-                        }
 
 
                     }
@@ -224,6 +229,21 @@ public class HomeFragment extends Fragment {
         imageArrayList.add(new Image("1 tặng 1", R.drawable.now5));
 
     }
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
+        if (requestCode == REQUESTCODE_FOLDER && resultCode == Activity.RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            try {
+                InputStream inputStream = getContext().getContentResolver().openInputStream(uri);
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                bitmapImages = bitmap;
+                tmg.setImageURI(data.getData());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            Toast.makeText(getContext(), "Thêm ảnh thành công !", Toast.LENGTH_SHORT).show();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
 }
