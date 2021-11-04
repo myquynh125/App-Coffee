@@ -49,7 +49,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-    private static final int MY_REQUEST_CODE = 100;
+   // private static final int MY_REQUEST_CODE = 100;
     private static final int REQUESTCODE_FOLDER = 999;
     private GridView GridViewIntro;
     private RecyclerView RecyclerViewFood;
@@ -104,46 +104,46 @@ public class HomeFragment extends Fragment {
         foodAdapter.setOnItemClickListener(new FoodAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(final int Position) {
-                LayoutInflater layoutInflater=LayoutInflater.from(context);
-                View update=layoutInflater.inflate(R.layout.dialog_edit_food,null);
-                AlertDialog.Builder builder=new AlertDialog.Builder(context);
-                builder.setView(update);
-                final EditText txtname=update.findViewById(R.id.edt_namefood_dal);
-                final Spinner spn=update.findViewById(R.id.txt_food);
-                final EditText txtpri=update.findViewById(R.id.edt_price_dal);
-                final EditText txtdeta=update.findViewById(R.id.edt_review_dal);
-                final ImageButton tmgcam=update.findViewById(R.id.imv_folder_dal);
-                tmg=update.findViewById(R.id.imv_add_food_dal);
-                Button_folder=update.findViewById(R.id.btn_folder_dal);
-                list = new ArrayList<>();
-                list.add("cà phê");
-                list.add("trà");
-                list.add("sinh tố");
-                ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, list);
-                spn.setAdapter(adapter);
-                txtpri.setInputType(InputType.TYPE_CLASS_NUMBER |
-                        InputType.TYPE_NUMBER_VARIATION_NORMAL);
-                Button_folder.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(Intent.ACTION_PICK);
-                        intent.setType("image/*");
-                        startActivityForResult(intent, REQUESTCODE_FOLDER);
-                    }
-                });
-                builder.setTitle("Bạn có muốn update không");
-                builder.setPositiveButton("Sửa", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Foody foody = foodies.get(Position);
-                        String loai = spn.getSelectedItem().toString();
-                        String name = txtname.getText().toString();
-                        String pri = txtpri.getText().toString();
-                        String review = txtdeta.getText().toString();
+ //               LayoutInflater layoutInflater=LayoutInflater.from(context);
+ //               View update=layoutInflater.inflate(R.layout.dialog_edit_food,null);
+ //               AlertDialog.Builder builder=new AlertDialog.Builder(context);
+ //               builder.setView(update);
+ //               final EditText txtname=update.findViewById(R.id.edt_namefood_dal);
+ //               final Spinner spn=update.findViewById(R.id.txt_food);
+ //               final EditText txtpri=update.findViewById(R.id.edt_price_dal);
+ //               final EditText txtdeta=update.findViewById(R.id.edt_review_dal);
+ //               final ImageButton tmgcam=update.findViewById(R.id.imv_folder_dal);
+ //               tmg=update.findViewById(R.id.imv_add_food_dal);
+ //               Button_folder=update.findViewById(R.id.btn_folder_dal);
+ //               list = new ArrayList<>();
+ //               list.add("cà phê");
+ //               list.add("trà");
+ //               list.add("sinh tố");
+ //               ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item, list);
+ //               spn.setAdapter(adapter);
+ //               txtpri.setInputType(InputType.TYPE_CLASS_NUMBER |
+ //                       InputType.TYPE_NUMBER_VARIATION_NORMAL);
+ //               Button_folder.setOnClickListener(new View.OnClickListener() {
+ //                   @Override
+ //                   public void onClick(View v) {
+ //                       Intent intent = new Intent(Intent.ACTION_PICK);
+ //                       intent.setType("image/*");
+ //                       startActivityForResult(intent, REQUESTCODE_FOLDER);
+ //                   }
+ //               });
+ //               builder.setTitle("Bạn có muốn update không");
+ //               builder.setPositiveButton("Sửa", new DialogInterface.OnClickListener() {
+ //                   @Override
+ //                   public void onClick(DialogInterface dialog, int which) {
+ //                       Foody foody = foodies.get(Position);
+ //                       String loai = spn.getSelectedItem().toString();
+ //                       String name = txtname.getText().toString();
+ //                       String pri = txtpri.getText().toString();
+ //                       String review = txtdeta.getText().toString();
 
 
-                    }
-                });
+ //                   }
+ //               });
             }
 
             @Override
@@ -215,7 +215,7 @@ public class HomeFragment extends Fragment {
     private void filter(String Text) {
         ArrayList<Foody> foodyList = new ArrayList<>();
         for (Foody foody : foodies) {
-            if (foody.getName().toLowerCase().contains(Text.toLowerCase())) {
+            if (foody.getName().toLowerCase().toUpperCase().contains(Text.toLowerCase().toUpperCase())) {
                 foodyList.add(foody);
             }
         }
@@ -229,21 +229,21 @@ public class HomeFragment extends Fragment {
         imageArrayList.add(new Image("1 tặng 1", R.drawable.now5));
 
     }
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+ //   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
-        if (requestCode == REQUESTCODE_FOLDER && resultCode == Activity.RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            try {
-                InputStream inputStream = getContext().getContentResolver().openInputStream(uri);
-                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                bitmapImages = bitmap;
-                tmg.setImageURI(data.getData());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            Toast.makeText(getContext(), "Thêm ảnh thành công !", Toast.LENGTH_SHORT).show();
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
+ //       if (requestCode == REQUESTCODE_FOLDER && resultCode == Activity.RESULT_OK && data != null) {
+ //           Uri uri = data.getData();
+ //           try {
+ //               InputStream inputStream = getContext().getContentResolver().openInputStream(uri);
+ //               Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+ //               bitmapImages = bitmap;
+ //               tmg.setImageURI(data.getData());
+ //           } catch (FileNotFoundException e) {
+ //               e.printStackTrace();
+ //           }
+ //           Toast.makeText(getContext(), "Thêm ảnh thành công !", Toast.LENGTH_SHORT).show();
+ //       }
+ //       super.onActivityResult(requestCode, resultCode, data);
+ //   }
 
 }

@@ -36,20 +36,11 @@ import java.util.List;
 
 public class MeFragment extends Fragment {
     private Button Button_logout;
-    private TextView TextView_name_me;
-    private ListView ListView_me;
     TextView TextViewThunhap;
     TextView TextViewSoluong;
     TextView TextViewSoluongdangban;
     TextView TextViewSoluongtaikhoan;
-    private RecyclerView recyclerView;
-    private AppDatabase db;
-    private ArrayList<Foody> foodies;
-    Button buttondsacc;
     private MeViewModel meViewModel;
-    private Context context;
-    private FoodAdapter foodAdapter;
-    ArrayList <String> arr = new ArrayList<>();
     public View onCreateView(@NonNull LayoutInflater inflater,
     ViewGroup container, Bundle savedInstanceState) {
         meViewModel =

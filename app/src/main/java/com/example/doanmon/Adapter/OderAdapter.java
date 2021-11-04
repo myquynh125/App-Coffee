@@ -66,7 +66,7 @@ public class OderAdapter extends RecyclerView.Adapter<OderAdapter.ViewHolder> {
         private View view;
         private TextView TextViewName;
         private TextView TextViewPrice;
-        private TextView TextViewSoluong;
+       // private TextView TextViewSoluong;
         private ImageView ImageViewFood;
         private ImageView ButtonDelete;
         public ViewHolder(@NonNull View itemView, final OnItemClickListener onclickItem) {

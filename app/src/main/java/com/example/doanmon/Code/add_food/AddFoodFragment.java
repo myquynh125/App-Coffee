@@ -50,11 +50,11 @@ public class AddFoodFragment extends Fragment {
     private Button Button_add;
     private ImageButton imageButton_camera;
     private ImageView ImageView_imagesfood;
-    Context context;
+   // Context context;
     private List<String> list;
     Bitmap bitmapImages = null;
 
-    private TextView textView;
+   // private TextView textView;
     private AddFoodVIewModel addFoodVIewModel;
     private View Button_folder;
 
